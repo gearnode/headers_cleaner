@@ -34,11 +34,27 @@ RSpec.describe HeadersCleaner::Rack do
     end
 
     let(:app) do
-      proc { [200, {'Server' => 'DELETE ME !'}, ['Hello World.']] }
+      proc { [200, {'X-Runtime' => 'DELETE ME !'}, ['Hello World.']] }
     end
 
     it 'removes header' do
       expect(response.headers['TO_DELETE']).to eq(nil)
+    end
+
+  end
+
+  context 'when is server header' do
+
+    subject(:response) do
+      request.get('/')
+    end
+
+    let(:app) do
+      proc { [200, {'Server' => 'REPLACE ME !'}, ['Hello World.']] }
+    end
+
+    it 'removes header' do
+      expect(response.headers['Server']).to eq('42')
     end
 
   end

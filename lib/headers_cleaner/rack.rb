@@ -12,6 +12,12 @@ module HeadersCleaner
     def call(env)
       status, headers, body = @app.call(env)
       @to_remove_headers.each { |key| headers.delete(key) }
+
+      # Define fake server
+      # because some server (e.g. thin reset server)
+      # https://github.com/macournoyer/thin/commit/617fccf7f7e1ee93671e8905623852e23fcc296c
+      headers['Server'] = '42'
+
       [status, headers, body]
     end
 
