@@ -1,9 +1,12 @@
 module HeadersCleaner
   class Rack
 
+    SENSITIVE_HEADERS = %w(Server X-Runtime X-Powered-By).freeze
+    private_constant(:SENSITIVE_HEADERS)
+
     def initialize(app, opts = {})
       @app = app
-      @to_remove_headers = HeadersCleaner::SENSITIVE_HEADERS - opts.fetch(:whitelisted, [])
+      @to_remove_headers = opts.fetch(:remove, SENSITIVE_HEADERS)
     end
 
     def call(env)

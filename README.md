@@ -25,6 +25,8 @@ Or install it yourself as:
 ```ruby
 # config/application.rb
 
+# you can passe remove params for remove specific header
+# by default Server X-Runtime and X-Powered-By headers is removed
 config.middleware.insert_before(0, HeadearsCleaner.middleware)
 ```
 
