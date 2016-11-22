@@ -1,4 +1,5 @@
 # HeadersCleaner
+[![Build Status](https://travis-ci.org/gearnode/headers_cleaner.svg?branch=master)](https://travis-ci.org/gearnode/headers_cleaner)
 
 Rack middleware for clean sensitive header on production.
 
