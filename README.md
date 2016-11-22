@@ -23,7 +23,9 @@ Or install it yourself as:
 ### For Ruby On Rails
 
 ```ruby
+# config/application.rb
 
+config.middleware.insert_before(0, HeadearsCleaner.middleware)
 ```
 
 ## Development
